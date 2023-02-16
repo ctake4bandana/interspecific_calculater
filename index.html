@@ -86,12 +86,12 @@ function simuration(){
 }
 var inputHk = document.getElementById("hk");
 inputHk.addEventListener('change', function(){
-		document.getElementById("realh").innerHTML=inputHk.value + "000"
+		document.getElementById("realh").innerHTML=Number(inputHk.value) * 1000;
 }, false);
 
 var inputDk = document.getElementById("dk");
 inputDk.addEventListener('change', function(){
-		document.getElementById("reald").innerHTML=inputDk.value + "000"
+		document.getElementById("reald").innerHTML=Number(inputDk.value) * 1000;
 }, false);
 
 function pipo(){
