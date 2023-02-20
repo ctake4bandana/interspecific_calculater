@@ -142,11 +142,10 @@ function pipo(){
 	var returnTxt = "";
 	//TODO: seikikasiro
 		console.log(totalDm)
-		console.log(h1h)
-		console.log(h1num)
 	h1pipo = parseInt(Math.min(totalDm / h1h, h1num));
 	returnTxt = "Unit1 : " +h1pipo+"<br>"
 	currentD = totalDm - h1pipo * h1h;
+	console.log(currentD);
 	if (currentD < h1h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -155,6 +154,7 @@ function pipo(){
 	h2pipo = parseInt(Math.min(currentD / h2h, h2num));
 	returnTxt = returnTxt + "Unit2 : " +h2pipo+"<br>"
 	currentD = currentD - h2pipo * h2h;
+	console.log(currentD);
 	if (currentD < h2h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -162,6 +162,7 @@ function pipo(){
 	h3pipo = parseInt(Math.min(currentD / h3h, h3num));
 	returnTxt = returnTxt + "Unit3 : " +h3pipo+"<br>"
 	currentD = currentD - h3pipo * h3h;
+	console.log(currentD);
 	if (currentD < h3h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -169,6 +170,7 @@ function pipo(){
 	h4pipo = parseInt(Math.min(currentD / h4h, h4num));
 	returnTxt = returnTxt + "Unit4 : " +h4pipo+"<br>"
 	currentD = currentD - h4pipo * h4h;
+	console.log(currentD);
 	if (currentD < h4h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -176,6 +178,7 @@ function pipo(){
 	h5pipo = parseInt(Math.min(currentD / h5h, h5num));
 	returnTxt = returnTxt + "Unit5 : " +h5pipo+"<br>"
 	currentD = currentD - h5pipo * h5h;
+	console.log(currentD);
 	if (currentD < h5h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -183,6 +186,7 @@ function pipo(){
 	h6pipo = parseInt(Math.min(currentD / h6h, h6num));
 	returnTxt = returnTxt + "Unit6 : " +h6pipo+"<br>"
 	currentD = currentD - h6pipo * h6h;
+	console.log(currentD);
 	if (currentD < h6h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -191,6 +195,7 @@ function pipo(){
 	h7pipo = parseInt(Math.min(currentD / h7h, h7num));
 	returnTxt = returnTxt + "Unit7 : " +h7pipo+"<br>"
 	currentD = currentD - h7pipo * h7h;
+	console.log(currentD);
 	if (currentD < h7h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -199,6 +204,7 @@ function pipo(){
 	h8pipo = parseInt(Math.min(currentD / h8h, h8num));
 	returnTxt = returnTxt + "Unit8 : " +h8pipo+"<br>"
 	currentD = currentD - h8pipo * h8h;
+	console.log(currentD);
 	if (currentD < h8h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
@@ -207,6 +213,7 @@ function pipo(){
 	h9pipo = parseInt(Math.min(currentD / h9h, h9num));
 	returnTxt = returnTxt + "Unit9 : " +h9pipo+"<br>"
 	currentD = currentD - h9pipo * h9h;
+	console.log(currentD);
 	if (currentD < h9h){
 		document.getElementById("result").innerHTML=returnTxt;
 		return false;
