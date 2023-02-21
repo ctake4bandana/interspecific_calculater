@@ -58,11 +58,15 @@
         <input type="text" id="bufper" name="bufper" oninput="value = value.replace(/[^0-9]+/i,'');"/>
         <br>
         <span class="row1">R6狂</span>
-        <input type="text" id="b6num" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <input type="text" id="b6num" name="b6num" oninput="value = value.replace(/[^0-9]+/i,'');"/>
         <br>
         <span class="row1">R7狂</span>
-        <input type="text" id="b7num" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <input type="text" id="b7num" name="b7num" oninput="value = value.replace(/[^0-9]+/i,'');"/>
         <br>
+        <span class="row1">R8狂</span>
+        <input type="text" id="b8num" name="b8num" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <br>
+
         <input type="submit" value="Simuration" onclick="calc()">
         <input type="submit" value="inputTestVal" onclick="ctest()">
         <hr>
@@ -132,7 +136,8 @@
                 bufper = 1 + (bufper / 100)
                 var b6num = Number(document.getElementById("b6num").value);
                 var b7num = Number(document.getElementById("b7num").value);
-                console.log(atk, ck, elesum, igd, bufper, b6num, b7num)
+                var b8num = Number(document.getElementById("b8num").value);
+                console.log(atk, ck, elesum, igd, bufper, b6num, b7num, b8num)
 
                 var kinga = {
                     '11': 18319,
@@ -144,6 +149,7 @@
                 };
                 var b6c = 80;
                 var b7c = 100;
+                var b8c = 120;
                 console.log(kinga)
 
                 for (var key in kinga) {
@@ -158,7 +164,7 @@
 
                     var bbb = 0;
                     for (var i = 1; i < 21; i++) {
-                        var bck = ck + i * (b6num * b6c + b7num * b7c);
+                        var bck = ck + i * (b6num * b6c + b7num * b7c + b8num * b8c);
                         var brc = Math.max(bck / 20, (bck - (bd * igd))) * bufper;
                         var brgc = getBaseLog(5, bck * bufper) * elesum * bufper;
                     
