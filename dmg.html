@@ -150,14 +150,9 @@
                     var bd = kinga[key];
                     var ra = Math.max(atk / 20, (atk - (bd * igd))) * bufper;
                     var rc = Math.max(ck / 20, (ck - (bd * igd))) * bufper;
-                    //console.log("1at",ra,"1cha",rc);
                     var rga = getBaseLog(5, atk * bufper) * elesum * bufper;
                     var rgc = getBaseLog(5, ck * bufper) * elesum * bufper;
-                    //console.log("1ate",rga,"1ce",rgc);
 
-                    //document.getElementById("a"+key+"a1").innerHTML=parseInt(ra+rga);
-                    //document.getElementById("a"+key+"c1").innerHTML=parseInt(rc+rga);
-                    //document.getElementById("a"+key+"c20").innerHTML=parseInt( ((rc+rgc)*20) / 1000 ) + '(k)';
                     document.getElementById("a" + key + "a20").innerHTML = parseInt(((ra + rga) * 20) / 1000) + '(k)';
                     document.getElementById("a" + key + "sum").innerHTML = parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000) + '(k)';
 
@@ -165,10 +160,8 @@
                     for (var i = 1; i < 21; i++) {
                         var bck = ck + i * (b6num * b6c + b7num * b7c);
                         var brc = Math.max(bck / 20, (bck - (bd * igd))) * bufper;
-                        //console.log(i,"brc",brc);
-
                         var brgc = getBaseLog(5, bck * bufper) * elesum * bufper;
-                        //console.log(i,"brgc",brgc);
+                    
                         bbb = bbb + brc + brgc;
                     }
                     document.getElementById("a" + key + "sumwithb").innerHTML = parseInt((bbb + (ra + rga) * 20) / 1000) + '(k)';
