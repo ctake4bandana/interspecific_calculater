@@ -1,221 +1,189 @@
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-  </head>
-
-  <body>
+    <head>
+        <meta charset="utf-8">
+    </head>
     <style>
-      table{
-        background-color: #eee;
-      }
-      tr{
-        background-color: #fff;
-      }
-      td{
-        padding-left: 6px;
-        padding-right: 6px;
-      }
-      body{
-        margin: 15px;
-      }
-      span.row1{
-        display: inline-block;
-	width:85px;
-      }
-      span.xx-small{
-	font-size: xx-small;
-      }
-      span.bysys{
-        color: #bbb;
-	font-size: small;
-      }
+        table {
+            background-color: #eee;
+        }
+
+        tr {
+            background-color: #fff;
+        }
+
+        td {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        body {
+            margin: 15px;
+        }
+
+        span.row1 {
+            display: inline-block;
+            width: 85px;
+        }
+
+        .xx-small {
+            font-size: xx-small;
+        }
+
+        span.bysys {
+            color: #bbb;
+            font-size: small;
+        }
+
+        td.f7 {
+            background-color: #f7f7f7
+        }
     </style>
+    <body>
+        <br>
+        <span class="row1">攻(K)</span>
+        <input type="text" id="ak" name="ak" oninput="value = value.replace(/[^0-9\.]+/i,'');"/>
+        <span id="realh" class="bysys"></span>
+        <br>
+        <span class="row1">追(K)</span>
+        <input type="text" id="ck" name="ck" oninput="value = value.replace(/[^0-9\.]+/i,'');"/>
+        <span id="reald" class="bysys"></span>
+        <br>
+        <span class="row1">元素計</span>
+        <input type="text" id="elesum" name="elesum" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <br>
+        <span class="row1">防無視</span>
+        <input type="text" id="igd" name="igd" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <br>
+        <span class="row1">ダメ(%)</span>
+        <input type="text" id="bufper" name="bufper" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <br>
+        <span class="row1">R6狂</span>
+        <input type="text" id="b6num" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <br>
+        <span class="row1">R7狂</span>
+        <input type="text" id="b7num" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/>
+        <br>
+        <input type="submit" value="Simuration" onclick="calc()">
+        <input type="submit" value="inputTestVal" onclick="ctest()">
+        <hr>
+        Result<br>
+        <span id="result"></span>
+        <table>
+            <tr>
+                <td class="f7">Area</td>
+                <td class="f7">追撃無</td>
+                <td class="f7">追撃有</td>
+                <td class="f7 xx-small">追撃有(with狂)</td>
+            </tr>
+            <tr>
+                <td id="a11" class="f7">11</td>
+                <td id="a11a20"></td>
+                <td id="a11sum"></td>
+                <td id="a11sumwithb"></td>
+            </tr>
+            <tr>
+                <td id="a12" class="f7">12</td>
+                <td id="a12a20"></td>
+                <td id="a12sum"></td>
+                <td id="a12sumwithb"></td>
+            </tr>
+            <tr>
+                <td id="a13" class="f7">13</td>
+                <td id="a13a20"></td>
+                <td id="a13sum"></td>
+                <td id="a13sumwithb"></td>
+            </tr>
+            <tr>
+                <td id="a14" class="f7">14</td>
+                <td id="a14a20"></td>
+                <td id="a14sum"></td>
+                <td id="a14sumwithb"></td>
+            </tr>
+            <tr>
+                <td id="a15" class="f7">15</td>
+                <td id="a15a20"></td>
+                <td id="a15sum"></td>
+                <td id="a15sumwithb"></td>
+            </tr>
+            <tr>
+                <td id="a16" class="f7">16</td>
+                <td id="a16a20"></td>
+                <td id="a16sum"></td>
+                <td id="a16sumwithb"></td>
+            </tr>
+        </table>
+        <script>
 
-<br>
-<span class="row1">攻(K)</span><input type="text" id="ak" name="ak" oninput="value = value.replace(/[^0-9\.]+/i,'');"/><span id="realh" class="bysys"></span><br>
-<span class="row1">追(K)</span><input type="text" id="ck"  name="ck" oninput="value = value.replace(/[^0-9\.]+/i,'');"/><span id="reald" class="bysys"></span><br>
-<span class="row1">元素計</span><input type="text" id="elesum" name="elesum" oninput="value = value.replace(/[^0-9]+/i,'');" /><br>
-<span class="row1">防無視</span><input type="text" id="igd" name="igd" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
-<span class="row1">ダメ(%)</span><input type="text" id="bufper" name="bufper" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
-<span class="row1">6狂</span><input type="text" id="b6num" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
-<span class="row1">7狂</span><input type="text" id="b7num" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
+            function ctest() {
+                document.getElementById("ak").value = 68.4;
+                document.getElementById("ck").value = 50.5;
+                document.getElementById("elesum").value = 480;
+                document.getElementById("bufper").value = 13;
+                document.getElementById("b6num").value = 140;
+            }
+            function calc() {
+                //class ka sinaino?
+                var atk = Number(document.getElementById("ak").value) * 1000;
+                var ck = Number(document.getElementById("ck").value) * 1000;
+                var elesum = Number(document.getElementById("elesum").value);
+                var igd = Number(document.getElementById("igd").value);
+                igd = (100 - igd) / 100;
+                var bufper = Number(document.getElementById("bufper").value);
+                bufper = 1 + (bufper / 100)
+                var b6num = Number(document.getElementById("b6num").value);
+                var b7num = Number(document.getElementById("b7num").value);
+                console.log(atk, ck, elesum, igd, bufper, b6num, b7num)
 
-<input type="submit" value="Simuration" onclick="calc()">
-<input type="submit" value="inputTestVal" onclick="ctest()">
-<hr>
-Result<br>
-<span id="result"></span>
-<table>
- <tr>
-  <td>Area</td>
-  <td>a1</td>
-  <td>c1</td>
-  <td>a20</td>
-  <td>c20</td>
-  <td>sum</td>
-  <td></td>
-  <!--<td>c20withb</td>-->
-  <td>c20sumwithb</td>
- </tr>
- <tr>
-  <td id="a11"     >11</td>
-  <td id="a11a1"   ></td>
-  <td id="a11c1"   ></td>
-  <td id="a11a20"  ></td>
-  <td id="a11c20"  ></td>
-  <td id="a11sum"  ></td>
-  <td ></td>
-  <!--<td id="a11c20withb"></td>-->
-  <td id="a11sumwithb"></td>
- </tr>
+                var kinga = {
+                    '11': 18319,
+                    '12': 25159,
+                    '13': 50280,
+                    '14': 95958,
+                    '15': 136000,
+                    '16': 200100
+                };
+                var b6c = 80;
+                var b7c = 100;
+                console.log(kinga)
 
- <tr>
-  <td id="a12"     >12</td>
-  <td id="a12a1"   ></td>
-  <td id="a12c1"   ></td>
-  <td id="a12a20"  ></td>
-  <td id="a12c20"  ></td>
-  <td id="a12sum"  ></td>
-  <td ></td>
-  <!--<td id="a12c20withb"></td>-->
-  <td id="a12sumwithb"></td>
- </tr>
+                for (var key in kinga) {
+                    var bd = kinga[key];
+                    var ra = Math.max(atk / 20, (atk - (bd * igd))) * bufper;
+                    var rc = Math.max(ck / 20, (ck - (bd * igd))) * bufper;
+                    //console.log("1at",ra,"1cha",rc);
+                    var rga = getBaseLog(5, atk * bufper) * elesum * bufper;
+                    var rgc = getBaseLog(5, ck * bufper) * elesum * bufper;
+                    //console.log("1ate",rga,"1ce",rgc);
 
- <tr>
-  <td id="a13"     >13</td>
-  <td id="a13a1"   ></td>
-  <td id="a13c1"   ></td>
-  <td id="a13a20"  ></td>
-  <td id="a13c20"  ></td>
-  <td id="a13sum"  ></td>
-  <td ></td>
-  <!--<td id="a13c20withb"></td>-->
-  <td id="a13sumwithb"></td>
- </tr>
+                    //document.getElementById("a"+key+"a1").innerHTML=parseInt(ra+rga);
+                    //document.getElementById("a"+key+"c1").innerHTML=parseInt(rc+rga);
+                    //document.getElementById("a"+key+"c20").innerHTML=parseInt( ((rc+rgc)*20) / 1000 ) + '(k)';
+                    document.getElementById("a" + key + "a20").innerHTML = parseInt(((ra + rga) * 20) / 1000) + '(k)';
+                    document.getElementById("a" + key + "sum").innerHTML = parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000) + '(k)';
 
- <tr>
-  <td id="a14"     >14</td>
-  <td id="a14a1"   ></td>
-  <td id="a14c1"   ></td>
-  <td id="a14a20"  ></td>
-  <td id="a14c20"  ></td>
-  <td id="a14sum"  ></td>
-  <td ></td>
-  <!--<td id="a14c20withb"></td>-->
-  <td id="a14sumwithb"></td>
- </tr>
+                    var bbb = 0;
+                    for (var i = 1; i < 21; i++) {
+                        var bck = ck + i * (b6num * b6c + b7num * b7c);
+                        var brc = Math.max(bck / 20, (bck - (bd * igd))) * bufper;
+                        //console.log(i,"brc",brc);
 
- <tr>
-  <td id="a15"     >15</td>
-  <td id="a15a1"   ></td>
-  <td id="a15c1"   ></td>
-  <td id="a15a20"  ></td>
-  <td id="a15c20"  ></td>
-  <td id="a15sum"  ></td>
-  <td ></td>
-  <!--<td id="a15c20withb"></td>-->
-  <td id="a15sumwithb"></td>
- </tr>
+                        var brgc = getBaseLog(5, bck * bufper) * elesum * bufper;
+                        //console.log(i,"brgc",brgc);
+                        bbb = bbb + brc + brgc;
+                    }
+                    document.getElementById("a" + key + "sumwithb").innerHTML = parseInt((bbb + (ra + rga) * 20) / 1000) + '(k)';
+                }
 
- <tr>
-  <td id="a16"     >16</td>
-  <td id="a16a1"   ></td>
-  <td id="a16c1"   ></td>
-  <td id="a16a20"  ></td>
-  <td id="a16c20"  ></td>
-  <td id="a16sum"  ></td>
-  <td ></td>
-  <!--<td id="a16c20withb"></td>-->
-  <td id="a16sumwithb"></td>
- </tr>
+            }
 
-
-</table>
-
-<script>
-
-
-function pipo(){
-	var returnTxt = "";
-	//TODO: seikikasiro
-		console.log(totalDm)
-	h1pipo = parseInt(Math.min(totalDm / h1h, h1num));
-	returnTxt = "Unit1 : " +h1pipo+"<br>"
-	currentD = totalDm - h1pipo * h1h;
-	console.log(currentD);
-	if (currentD < h1h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-}
-
-function ctest(){
-	document.getElementById("ak").value=68.4;
-	document.getElementById("ck").value=50.5;
-	document.getElementById("elesum").value=480;
-	document.getElementById("bufper").value=13;
-	document.getElementById("b6num").value=140;
-}
-function calc(){
-	//class ka sinaino?
-	var atk    = Number(document.getElementById("ak").value) * 1000;
-	var ck     = Number(document.getElementById("ck").value) * 1000;
-	var elesum = Number(document.getElementById("elesum").value);
-	var igd    = Number(document.getElementById("igd").value);
-	igd        = ( 100 - igd ) /100;
-	var bufper = Number(document.getElementById("bufper").value);
-	bufper     = 1 + (bufper / 100)
-	var b6num  = Number(document.getElementById("b6num").value);
-	var b7num  = Number(document.getElementById("b7num").value);
-	console.log(atk,ck,elesum,igd,bufper,b6num,b7num)
-
-	var kinga  = {'11':18319,'12':25159,'13':50280,'14':95958,'15':136000,'16':200100};
-	var b6c = 80;
-	var b7c = 100;
-	console.log(kinga)
-
-	for (var key in kinga) {
-		var bd = kinga[key];
-		var ra = Math.max( atk / 20  , ( atk - ( bd * igd ) ) ) * bufper;
-		var rc = Math.max( ck  / 20  , ( ck  - ( bd * igd ) ) ) * bufper;
-		//console.log("1at",ra,"1cha",rc);
-		var rga = getBaseLog(5, atk * bufper ) * elesum * bufper;
-		var rgc = getBaseLog(5, ck * bufper ) * elesum * bufper;
-		//console.log("1ate",rga,"1ce",rgc);
-
-		document.getElementById("a"+key+"a1").innerHTML=parseInt(ra+rga);
-		document.getElementById("a"+key+"c1").innerHTML=parseInt(rc+rga);
-
-		document.getElementById("a"+key+"a20").innerHTML=parseInt( ((ra+rga)*20) / 1000 ) + '(k)';
-		document.getElementById("a"+key+"c20").innerHTML=parseInt( ((rc+rgc)*20) / 1000 ) + '(k)';
-
-		document.getElementById("a"+key+"sum").innerHTML=parseInt( ( (ra+rga)*20 + (rc+rgc)*20 ) / 1000 ) + '(k)';
-
-		var bbb=0;
-		for ( var i = 0; i < 20; i++ ) {
-			var bck=ck + i*(b6num*b6c + b7num*b7c);
-			var brc = Math.max( bck  / 20  , ( bck  - ( bd * igd ) ) ) * bufper;
-			//console.log("brc",brc);
-
-			var brgc = getBaseLog(5, bck * bufper ) * elesum * bufper;
-			//console.log("brgc",brgc);
-			bbb = bbb + brc + brgc;
-			//console.log(i,bbb)
-		}
-		//document.getElementById("a"+key+"c20withb").innerHTML=parseInt( (bbb) / 1000 ) + '(k)';
-		document.getElementById("a"+key+"sumwithb").innerHTML=parseInt( (bbb + (ra+rga)*20)/ 1000 ) + '(k)';
-		
-	}
-
-}
-
-function getBaseLog(x, y) {
-  return Math.log(y) / Math.log(x);
-}
-
-</script>
-
-<br>
-<hr>
-<span class="bysys xx-small">Author : bandana@ctake4<br></span>
-</body></html>
+            function getBaseLog(x, y) {
+                return Math.log(y) / Math.log(x);
+            }
+        </script>
+        <br>
+        <hr>
+        <span class="bysys xx-small">
+            Author : bandana@ctake4<br>
+        </span>
+    </body>
+</html>
