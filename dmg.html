@@ -68,7 +68,7 @@
         <br>
 
         <input type="submit" value="Simuration" onclick="calc()">
-        <input type="submit" value="inputTestVal" onclick="ctest()">
+        <input type="submit" value="inputLastVal" onclick="ctest()">
         <hr>
         Result<br>
         <span id="result"></span>
@@ -132,11 +132,14 @@
         <script>
 
             function ctest() {
-                document.getElementById("ak").value = 107;
-                document.getElementById("ck").value = 93.0;
-                document.getElementById("elesum").value = 1400;
-                document.getElementById("bufper").value = 13;
-                document.getElementById("b6num").value = 0;
+                document.getElementById("ak").value = getCookie("ak");
+                document.getElementById("ck").value = getCookie("ck");
+                document.getElementById("elesum").value = getCookie("elesum");
+                document.getElementById("bufper").value = getCookie("bufper");
+                document.getElementById("igd").value = getCookie("igd");
+                document.getElementById("b6num").value = getCookie("b6num");
+                document.getElementById("b7num").value = getCookie("b7num");
+                document.getElementById("b8num").value = getCookie("b8num");
             }
             function calc() {
                 var atk = Number(document.getElementById("ak").value) * 1000;
@@ -186,9 +189,27 @@
                     }
                     document.getElementById("a" + key + "sumwithb").innerHTML = parseInt((bbb + (ra + rga) * 20) / 1000) + '(k)';
                 }
-
+                setCookie();
+            }
+            
+            function getCookie(name) {
+                let matches = document.cookie.match(new RegExp(
+                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
             }
 
+            function setCookie(){
+                document.cookie = 'ak=' + document.getElementById("ak").value ;
+                document.cookie = 'ck=' + document.getElementById("ck").value ;
+                document.cookie = 'elesum=' + document.getElementById("elesum").value ;
+                document.cookie = 'bufper=' + document.getElementById("bufper").value ;
+                document.cookie = 'b6num=' + document.getElementById("b6num").value ;
+                document.cookie = 'b7num=' + document.getElementById("b7num").value ;
+                document.cookie = 'b8num=' + document.getElementById("b8num").value ;
+                document.cookie = 'igd=' + document.getElementById("igd").value ;
+            }
+            
             function getBaseLog(x, y) {
                 return Math.log(y) / Math.log(x);
             }
