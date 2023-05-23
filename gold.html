@@ -47,7 +47,7 @@ function calc(){
   var dPlus = Number(document.getElementById("dPlus").value);
   var igDef = Number(document.getElementById("igDef").value);
   var cdPercent = Number(document.getElementById("cdPercent").value);
-  var speci = Number(document.getElementById("speci").value);
+  var speci = document.getElementById("speci").value;
 
   if (speci === "c"){
     dPlus = dPlus + 10;
