@@ -62,8 +62,8 @@ function calc(){
   var totalAx = totalA * ( 1 + dPlus/100);
   var log5A = Math.log(totalAx) / Math.log(5);
   console.log(totalA,totalAx,log5A);
-  ad = (totalA - (YED - YED*igDef/100) + (eleSum * log5A) ) * (1 + dPlus/100);
-  acd = ((totalA - (YED - YED*igDef/100)) * (1.5+(cdPercent/100)) + (eleSum * log5A) ) * (1 + dPlus/100);
+  ad = (Math.max(totalA - (YED - YED*igDef/100),totalA * 0.05) + (eleSum * log5A) ) * (1 + dPlus/100);
+  acd = (Math.max(totalA - (YED - YED*igDef/100),totalA * 0.05) * (1.5+(cdPercent/100)) + (eleSum * log5A) ) * (1 + dPlus/100);
   console.log(ad,acd);
   document.getElementById("1a").innerText = Math.floor(ad) + '(' + Math.floor(acd) + ')';
 
@@ -72,8 +72,8 @@ function calc(){
   var totalCx = totalC * ( 1 + dPlus/100);
   var log5C = Math.log(totalCx) / Math.log(5);
   console.log(totalC,totalCx,log5C);
-  cd = (totalC - (YED - YED*igDef/100) + (eleSum * log5C) ) * (1 + dPlus/100);
-  ccd = ((totalC - (YED - YED*igDef/100)) * (1.5+(cdPercent/100)) + (eleSum * log5C) ) * (1 + dPlus/100);
+  cd = (Math.max(totalC - (YED - YED*igDef/100),totalC * 0.05) + (eleSum * log5C) ) * (1 + dPlus/100);
+  ccd = (Math.max(totalC - (YED - YED*igDef/100),totalC * 0.05) * (1.5+(cdPercent/100)) + (eleSum * log5C) ) * (1 + dPlus/100);
   console.log(cd,ccd);
   document.getElementById("1c").innerText = Math.floor(cd) + '(' + Math.floor(ccd) + ')';
 
