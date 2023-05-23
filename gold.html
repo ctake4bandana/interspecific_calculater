@@ -1,0 +1,82 @@
+<span class="catName"> 敵防御 </span> <input id="YED" type="number" name="YED" value="60000"><br>
+
+<span class="catName"> 攻撃 </span> <input id="denA" type="number" name="denA"><br>
+<span class="catName"> 追撃 </span> <input id="denC" type="number" name="denC"><br>
+
+<span class="catName"> 攻撃加算 </span> <input id="addA" type="number" name="addA"><br>
+<span class="catName"> 追撃加算 </span> <input id="addC" type="number" name="addC"><br>
+<span class="catName"> 元素計 </span> <input id="eleSum" type="number" name="eleSum"><br>
+
+<span class="catName"> ダメ追加% </span> <input id="dPlus" type="number" name="dPlus"><br>
+<span class="catName"> 防御無視% </span> <input id="igDef" type="number" name="igDef"><br>
+
+<span class="catName"> クリダメ追加% </span> <input id="cdPercent" type="number" name="cdPercent"><br>
+
+<span class="catName"> 特性 </span>
+<select id="speci" name="speci">
+ <option value="m">Mirror</option>
+ <option value="c">Cosmos</option>
+</select>
+
+<br><br>
+
+<input type="submit" id="calc" name="calc" value="calc" onClick="calc()">
+<hr>
+<span class="catName">kou : </span> <span id="1a"></span><br>
+<span class="catName">tui : </span> <span id="1c"></span><br>
+
+<style>
+ span.catName{
+  display:inline-block;
+  width: 100px;
+ }
+</style>
+
+
+<script>
+function calc(){
+  var MID = 10;
+  var YED = Number(document.getElementById("YED").value);
+
+  var denA = Number(document.getElementById("denA").value);
+  var denC = Number(document.getElementById("denC").value);
+
+  var addA = Number(document.getElementById("addA").value);
+  var addC = Number(document.getElementById("addC").value);
+  var eleSum = Number(document.getElementById("eleSum").value);
+  var dPlus = Number(document.getElementById("dPlus").value);
+  var igDef = Number(document.getElementById("igDef").value);
+  var cdPercent = Number(document.getElementById("cdPercent").value);
+  var speci = Number(document.getElementById("speci").value);
+
+  if (speci === "c"){
+    dPlus = dPlus + 10;
+  }
+
+  var totalA = denA + addA;
+  var totalAx = totalA * ( 1 + dPlus/100);
+  var log5A = Math.log(totalAx) / Math.log(5);
+  console.log(totalA,totalAx,log5A);
+  ad = (totalA - (YED - YED*igDef/100) + (eleSum * log5A) ) * (1 + dPlus/100);
+  acd = ((totalA - (YED - YED*igDef/100)) * (1.5+(cdPercent/100)) + (eleSum * log5A) ) * (1 + dPlus/100);
+  console.log(ad,acd);
+  document.getElementById("1a").innerText = Math.floor(ad) + '(' + Math.floor(acd) + ')';
+
+
+  var totalC = denC + addC;
+  var totalCx = totalC * ( 1 + dPlus/100);
+  var log5C = Math.log(totalCx) / Math.log(5);
+  console.log(totalC,totalCx,log5C);
+  cd = (totalC - (YED - YED*igDef/100) + (eleSum * log5C) ) * (1 + dPlus/100);
+  ccd = ((totalC - (YED - YED*igDef/100)) * (1.5+(cdPercent/100)) + (eleSum * log5C) ) * (1 + dPlus/100);
+  console.log(cd,ccd);
+  document.getElementById("1c").innerText = Math.floor(cd) + '(' + Math.floor(ccd) + ')';
+
+
+
+
+
+
+
+}
+</script>
