@@ -57,15 +57,6 @@
         <span class="row1">ダメ(%)</span>
         <input type="text" id="bufper" name="bufper" oninput="value = value.replace(/[^0-9]+/i,'');"/>
         <br>
-        <span class="row1">R6狂</span>
-        <input type="text" id="b6num" name="b6num" oninput="value = value.replace(/[^0-9]+/i,'');"/>
-        <br>
-        <span class="row1">R7狂</span>
-        <input type="text" id="b7num" name="b7num" oninput="value = value.replace(/[^0-9]+/i,'');"/>
-        <br>
-        <span class="row1">R8狂</span>
-        <input type="text" id="b8num" name="b8num" oninput="value = value.replace(/[^0-9]+/i,'');"/>
-        <br>
 
         <input type="submit" value="Simuration" onclick="calc()">
         <input type="submit" value="inputLastVal" onclick="ctest()">
@@ -77,57 +68,48 @@
                 <td class="f7">Area</td>
                 <td class="f7">追撃無</td>
                 <td class="f7">追撃有</td>
-                <td class="f7 xx-small">追撃有(with狂)</td>
             </tr>
             <tr>
                 <td id="a11" class="f7">11</td>
                 <td id="a11a20"></td>
                 <td id="a11sum"></td>
-                <td id="a11sumwithb"></td>
             </tr>
             <tr>
                 <td id="a12" class="f7">12</td>
                 <td id="a12a20"></td>
                 <td id="a12sum"></td>
-                <td id="a12sumwithb"></td>
             </tr>
             <tr>
                 <td id="a13" class="f7">13</td>
                 <td id="a13a20"></td>
                 <td id="a13sum"></td>
-                <td id="a13sumwithb"></td>
             </tr>
             <tr>
                 <td id="a14" class="f7">14</td>
                 <td id="a14a20"></td>
                 <td id="a14sum"></td>
-                <td id="a14sumwithb"></td>
             </tr>
             <tr>
                 <td id="a15" class="f7">15</td>
                 <td id="a15a20"></td>
                 <td id="a15sum"></td>
-                <td id="a15sumwithb"></td>
             </tr>
             <tr>
                 <td id="a16" class="f7">16</td>
                 <td id="a16a20"></td>
                 <td id="a16sum"></td>
-                <td id="a16sumwithb"></td>
             </tr>
             <tr>
                 <td id="a17" class="f7">17</td>
                 <td id="a17a20"></td>
                 <td id="a17sum"></td>
-                <td id="a17sumwithb"></td>
+            </tr>
+            <tr>
+                <td id="a18" class="f7">18</td>
+                <td id="a18a20"></td>
+                <td id="a18sum"></td>
             </tr>
             
-            <!--<tr>
-                <td id="amajur7" class="f7">R7魔獣</td>
-                <td id="amajur7a20"></td>
-                <td id="amajur7sum"></td>
-                <td id="amajur7sumwithb"></td>
-            </tr>-->
         </table>
         <script>
 
@@ -137,9 +119,6 @@
                 document.getElementById("elesum").value = getCookie("elesum");
                 document.getElementById("bufper").value = getCookie("bufper");
                 document.getElementById("igd").value = getCookie("igd");
-                document.getElementById("b6num").value = getCookie("b6num");
-                document.getElementById("b7num").value = getCookie("b7num");
-                document.getElementById("b8num").value = getCookie("b8num");
             }
             function calc() {
                 var atk = Number(document.getElementById("ak").value) * 1000;
@@ -161,13 +140,9 @@
                     '14': 95958,
                     '15': 136998,
                     '16': 201532,
-                    '17': 376818
+                    '17': 376818,
+                    '18': 764000
                 };
-                //'majur7': 102000
-                var b6c = 80;
-                var b7c = 100;
-                var b8c = 120;
-                console.log(kinga)
 
                 for (var key in kinga) {
                     var bd = kinga[key];
@@ -178,16 +153,6 @@
 
                     document.getElementById("a" + key + "a20").innerHTML = parseInt(((ra + rga) * 20) / 1000) + '(k)';
                     document.getElementById("a" + key + "sum").innerHTML = parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000) + '(k)';
-
-                    var bbb = 0;
-                    for (var i = 1; i < 21; i++) {
-                        var bck = ck + i * (b6num * b6c + b7num * b7c + b8num * b8c);
-                        var brc = Math.max(bck / 20, (bck - (bd * igd))) * bufper;
-                        var brgc = getBaseLog(5, bck * bufper) * elesum * bufper;
-                    
-                        bbb = bbb + brc + brgc;
-                    }
-                    document.getElementById("a" + key + "sumwithb").innerHTML = parseInt((bbb + (ra + rga) * 20) / 1000) + '(k)';
                 }
                 setCookie();
             }
@@ -204,9 +169,6 @@
                 document.cookie = 'ck=' + document.getElementById("ck").value ;
                 document.cookie = 'elesum=' + document.getElementById("elesum").value ;
                 document.cookie = 'bufper=' + document.getElementById("bufper").value ;
-                document.cookie = 'b6num=' + document.getElementById("b6num").value ;
-                document.cookie = 'b7num=' + document.getElementById("b7num").value ;
-                document.cookie = 'b8num=' + document.getElementById("b8num").value ;
                 document.cookie = 'igd=' + document.getElementById("igd").value ;
             }
             
