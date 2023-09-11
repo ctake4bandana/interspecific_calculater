@@ -1,0 +1,73 @@
+
+<head>
+ <meta name="viewport" content="width=400">
+ </meta>
+</head>
+
+<style>
+ span.catName{
+  display:inline-block;
+  width: 140px;
+ }
+</style>
+
+<span class="catName"> an area</span> <input id="sec" type="number" name="sec" value="3300">
+<input type="submit" id="calc" name="calc" value="calc" onClick="calc()">
+<hr>
+<span class="catName"> speed(%):</span> <span id="speed"></span><br>
+<span class="catName"> Total:</span> <span id="total"></span><br>
+<br><br><hr>
+
+<span class="catName"> Percent </span> <input id="percent" type="number" name="percent" value="100"><br>
+<input type="submit" id="calc" name="calc" value="calc" onClick="calcFromPercent()">
+<hr>
+<span class="catName">an area(sec): </span> <span id="areaFromPercent"></span><br>
+<span class="catName">Total: </span> <span id="totalFromPercent"></span><br>
+
+<script>
+function calcFromPercent() {
+  const BASE_SECOND = 6600;
+  const inputPercent = number(document.getElementById("percent").value);
+  var areaSecond = BASE_SECOND / ( 1 +  ( inputPercent / 100 ) );
+  var totalHms = toHms( 40 * areaSecond );
+  var areaHms = toHms( areaSecond );
+  document.getElementById("areaFromPercent").innerText= areaSecond;
+  document.getElementById("totalFromPercent").innerText= totalHms;
+}
+ 
+function calc() {
+  const BASE_SECOND = 6600;
+  const inputSecond = Number(document.getElementById("sec").value);
+  var totalSpeed = 100 / ( inputSecond / BASE_SECOND ) - 100 ;
+  var hms = toHms( 40 * inputSecond);
+
+  document.getElementById("speed").innerText= totalSpeed;
+  document.getElementById("total").innerText= hms;
+}
+
+function toHms(t){
+  var hms = “”;
+  var h = t / 3600 | 0;
+  var m = t % 3600 / 60 | 0;
+  var s = t % 60;
+  If (h != 0) {
+    hms = h + "時間"  + padZero(m) + "分" + padZero(s) + "秒";
+  } else if (m !=0) {
+    hms = m + "分" + padZero(s) + "秒";
+  } else {
+    hms = s + "秒";
+  }
+  return hms;
+
+  function padZero(v) {
+    If (v < 10) {
+      return "0" + v;
+    } else {
+      return v;
+    }
+
+  }
+
+}
+
+</script>
