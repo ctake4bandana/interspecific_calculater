@@ -27,7 +27,7 @@
 <script>
 function calcFromPercent() {
   const BASE_SECOND = 6600;
-  const inputPercent = number(document.getElementById("percent").value);
+  const inputPercent = Number(document.getElementById("percent").value);
   var areaSecond = BASE_SECOND / ( 1 +  ( inputPercent / 100 ) );
   var totalHms = toHms( 40 * areaSecond );
   var areaHms = toHms( areaSecond );
