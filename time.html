@@ -11,7 +11,7 @@
  }
 </style>
 
-<span class="catName"> an area</span> <input id="sec" type="number" name="sec" value="3300">
+<span class="catName"> an area</span> <input id="sec" type="number" name="sec" value="3300"><br>
 <input type="submit" id="calc" name="calc" value="calc" onClick="calc()">
 <hr>
 <span class="catName"> speed(%):</span> <span id="speed"></span><br>
@@ -50,7 +50,7 @@ function toHms(t){
   var h = t / 3600 | 0;
   var m = t % 3600 / 60 | 0;
   var s = t % 60;
-  If (h != 0) {
+  if (h != 0) {
     hms = h + "時間"  + padZero(m) + "分" + padZero(s) + "秒";
   } else if (m !=0) {
     hms = m + "分" + padZero(s) + "秒";
@@ -60,7 +60,7 @@ function toHms(t){
   return hms;
 
   function padZero(v) {
-    If (v < 10) {
+    if (v < 10) {
       return "0" + v;
     } else {
       return v;
