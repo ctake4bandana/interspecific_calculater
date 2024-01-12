@@ -1,333 +1,478 @@
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-	<script>
-	  function createSerialNumberOptions(start = 0, end = 399) {
-	    for (let i = start; i <= end; i++) {
-	      document.write(`<option value="${i}">${i}</option>`);
-	    }
-	  }
-	</script>
+    <meta charset="utf-8" />
+    <script>
+      function createSerialNumberOptions(start = 0, end = 399) {
+        for (let i = start; i <= end; i++) {
+          document.write(`<option value="${i}">${i}</option>`);
+        }
+      }
+    </script>
   </head>
 
   <body>
     <style>
-      body{
+      body {
         margin: 15px;
       }
-      span.row1{
+      span.row1 {
         display: inline-block;
-	width:85px;
+        width: 85px;
       }
-      span.xx-small{
-	font-size: xx-small;
+      span.xx-small {
+        font-size: xx-small;
       }
-      span.bysys{
+      span.bysys {
         color: #bbb;
-	font-size: small;
+        font-size: small;
       }
     </style>
 
-<span class="row1">Area</span>
-<select id="ki" name="ki">
-  <option value="55500">13</option>
-  <option value="103599">14</option>
-  <option value="145880">15</option>
-  <option value="211700">16</option>
-  <option value="390549">17</option>
-  <option value="774916">18</option>
-  <option value="1067274">19</option>
-  <option value="1394849">20</option>
-</select>
-<br>
-<span class="row1">HP(K)</span><input type="text" id="hk" name="hk" oninput="value = value.replace(/[^0-9\.]+/i,'');"/><span id="realh" class="bysys"></span><br>
-<span class="row1">DEF(K)</span><input type="text" id="dk"  name="dk" oninput="value = value.replace(/[^0-9\.]+/i,'');"/><span id="reald" class="bysys"></span><br>
-<span class="row1">重傷％</span><input type="text" id="jPercentage" name="jPercentage" oninput="value = value.replace(/[^0-9\.]+/i,'');" /><br>
-<span class="row1 xx-small">毎ターン回復</span><input type="text" id="he" name="he" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
-<span class="row1 xx-small">ダメージ耐性(%)</span><input type="text" id="decPercentage" name="decPercentage" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
-<span class="row1 xx-small">ダメージ耐性</span><input type="text" id="dec" name="dec" oninput="value = value.replace(/[^0-9]+/i,'');"/><br>
+    <span class="row1">Area</span>
+    <select id="ki" name="ki">
+      <option value="55500">13</option>
+      <option value="103599">14</option>
+      <option value="145880">15</option>
+      <option value="211700">16</option>
+      <option value="390549">17</option>
+      <option value="774916">18</option>
+      <option value="1067274">19</option>
+      <option value="1394849">20</option>
+    </select>
+    <br />
+    <span class="row1">HP(K)</span
+    ><input
+      type="text"
+      id="hk"
+      name="hk"
+      oninput="value = value.replace(/[^0-9\.]+/i,'');"
+    /><span id="realh" class="bysys"></span><br />
+    <span class="row1">DEF(K)</span
+    ><input
+      type="text"
+      id="dk"
+      name="dk"
+      oninput="value = value.replace(/[^0-9\.]+/i,'');"
+    /><span id="reald" class="bysys"></span><br />
+    <span class="row1">重傷％</span
+    ><input
+      type="text"
+      id="jPercentage"
+      name="jPercentage"
+      oninput="value = value.replace(/[^0-9\.]+/i,'');"
+    /><br />
+    <span class="row1 xx-small">毎ターン回復</span
+    ><input
+      type="text"
+      id="he"
+      name="he"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    /><br />
+    <span class="row1 xx-small">ダメージ耐性(%)</span
+    ><input
+      type="text"
+      id="decPercentage"
+      name="decPercentage"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    /><br />
+    <span class="row1 xx-small">ダメージ耐性</span
+    ><input
+      type="text"
+      id="dec"
+      name="dec"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    /><br />
 
-<br>
-Unit1 <input type="text" id="h1h" name="h1h" size="8" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,'');" />
-<select id="h1num" name="h1num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit2 <input type="text" id="h2h" name="h2h" size="8" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,'');" >
-<select id="h2num" name="h2num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit3 <input type="text" id="h3h" name="h3h" size="8" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,'');" >
-<select id="h3num" name="h3num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit4 <input type="text" id="h4h" name="h4h" maxlength="5" size="8" oninput="value = value.replace(/[^0-9]+/i,'');" />
-<select id="h4num" name="h4num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit5 <input type="text" maxlength="5" size="8" id="h5h" name="h5h" oninput="value = value.replace(/[^0-9]+/i,'');" />
-<select id="h5num" name="h5num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit6 <input type="text" id="h6h" name="h6h" maxlength="5" size="8" oninput="value = value.replace(/[^0-9]+/i,'');" >
-<select id="h6num" name="h6num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
+    <br />
+    Unit1
+    <input
+      type="text"
+      id="h1h"
+      name="h1h"
+      size="8"
+      maxlength="5"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h1num" name="h1num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit2
+    <input
+      type="text"
+      id="h2h"
+      name="h2h"
+      size="8"
+      maxlength="5"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h2num" name="h2num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit3
+    <input
+      type="text"
+      id="h3h"
+      name="h3h"
+      size="8"
+      maxlength="5"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h3num" name="h3num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit4
+    <input
+      type="text"
+      id="h4h"
+      name="h4h"
+      maxlength="5"
+      size="8"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h4num" name="h4num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit5
+    <input
+      type="text"
+      maxlength="5"
+      size="8"
+      id="h5h"
+      name="h5h"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h5num" name="h5num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit6
+    <input
+      type="text"
+      id="h6h"
+      name="h6h"
+      maxlength="5"
+      size="8"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h6num" name="h6num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
 
-Unit7 <input type="text" id="h7h" name="h7h" maxlength="5" size="8" oninput="value = value.replace(/[^0-9]+/i,'');" >
-<select id="h7num" name="h7num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit8 <input type="text" id="h8h" name="h8h" maxlength="5" size="8" oninput="value = value.replace(/[^0-9]+/i,'');" >
-<select id="h8num" name="h8num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
-Unit9 <input type="text" id="h9h" name="h9h" maxlength="5" size="8" oninput="value = value.replace(/[^0-9]+/i,'');" >
-<select id="h9num" name="h9num">
-<script>this.createSerialNumberOptions()</script>
-</select>
-<br>
+    Unit7
+    <input
+      type="text"
+      id="h7h"
+      name="h7h"
+      maxlength="5"
+      size="8"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h7num" name="h7num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit8
+    <input
+      type="text"
+      id="h8h"
+      name="h8h"
+      maxlength="5"
+      size="8"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h8num" name="h8num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
+    Unit9
+    <input
+      type="text"
+      id="h9h"
+      name="h9h"
+      maxlength="5"
+      size="8"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <select id="h9num" name="h9num">
+      <script>
+        this.createSerialNumberOptions();
+      </script>
+    </select>
+    <br />
 
+    <span class="bysys">totalRawH :&nbsp;</span
+    ><span class="bysys" id="totalRawH"></span><br />
+    <span class="bysys">hHosei :&nbsp;</span
+    ><span class="bysys" id="hHosei"></span><br />
+    <span class="bysys">totalDm :&nbsp;</span
+    ><span class="bysys" id="totalDm"></span><br />
 
+    <input type="submit" value="Simuration" onclick="simuration()" />
+    <input
+      type="submit"
+      id="inputTestVal"
+      value="inputTestVal"
+      onclick="ctest()"
+    />
+    <hr />
+    Result<br />
+    <span id="result"></span>
 
+    <script>
+      function simuration() {
+        calcRawH();
+        calcDm();
+        pipo();
+      }
+      var inputHk = document.getElementById("hk");
+      inputHk.addEventListener(
+        "change",
+        function () {
+          document.getElementById("realh").innerHTML =
+            Number(inputHk.value) * 1000;
+        },
+        false
+      );
 
+      var inputDk = document.getElementById("dk");
+      inputDk.addEventListener(
+        "change",
+        function () {
+          document.getElementById("reald").innerHTML =
+            Number(inputDk.value) * 1000;
+        },
+        false
+      );
 
-<span class="bysys">totalRawH :&nbsp;</span><span class="bysys" id="totalRawH"></span><br>
-<span class="bysys">hHosei :&nbsp;</span><span class="bysys" id="hHosei"></span><br>
-<span class="bysys">totalDm :&nbsp;</span><span class="bysys" id="totalDm"></span><br>
+      function pipo() {
+        var totalDm = Number(document.getElementById("totalDm").innerHTML);
+        var hHosei = Number(document.getElementById("hHosei").innerHTML);
+        var h1h = Number(document.getElementById("h1h").value) * hHosei;
+        var h1num = Number(document.getElementById("h1num").value);
+        var h2h = Number(document.getElementById("h2h").value) * hHosei;
+        var h2num = Number(document.getElementById("h2num").value);
+        var h3h = Number(document.getElementById("h3h").value) * hHosei;
+        var h3num = Number(document.getElementById("h3num").value);
+        var h4h = Number(document.getElementById("h4h").value) * hHosei;
+        var h4num = Number(document.getElementById("h4num").value);
+        var h5h = Number(document.getElementById("h5h").value) * hHosei;
+        var h5num = Number(document.getElementById("h5num").value);
+        var h6h = Number(document.getElementById("h6h").value) * hHosei;
+        var h6num = Number(document.getElementById("h6num").value);
 
-<input type="submit" value="Simuration" onclick="simuration()">
-<input type="submit" id="inputTestVal" value="inputTestVal" onclick="ctest()">
-<hr>
-Result<br>
-<span id="result"></span>
+        var h7h = Number(document.getElementById("h7h").value) * hHosei;
+        var h7num = Number(document.getElementById("h7num").value);
+        var h8h = Number(document.getElementById("h8h").value) * hHosei;
+        var h8num = Number(document.getElementById("h8num").value);
+        var h9h = Number(document.getElementById("h9h").value) * hHosei;
+        var h9num = Number(document.getElementById("h9num").value);
 
-<script>
-function simuration(){
-  calcRawH()
-  calcDm()
-  pipo()
-}
-var inputHk = document.getElementById("hk");
-inputHk.addEventListener('change', function(){
-		document.getElementById("realh").innerHTML=Number(inputHk.value) * 1000;
-}, false);
+        var returnTxt = "";
+        //TODO: seikikasiro
+        console.log(totalDm);
+        h1pipo = parseInt(Math.min(totalDm / h1h, h1num));
+        returnTxt = "Unit1 : " + h1pipo + "<br>";
+        currentD = totalDm - h1pipo * h1h;
+        console.log(currentD);
+        if (currentD < h1h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
 
-var inputDk = document.getElementById("dk");
-inputDk.addEventListener('change', function(){
-		document.getElementById("reald").innerHTML=Number(inputDk.value) * 1000;
-}, false);
+        h2pipo = parseInt(Math.min(currentD / h2h, h2num));
+        returnTxt = returnTxt + "Unit2 : " + h2pipo + "<br>";
+        currentD = currentD - h2pipo * h2h;
+        console.log(currentD);
+        if (currentD < h2h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
+        h3pipo = parseInt(Math.min(currentD / h3h, h3num));
+        returnTxt = returnTxt + "Unit3 : " + h3pipo + "<br>";
+        currentD = currentD - h3pipo * h3h;
+        console.log(currentD);
+        if (currentD < h3h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
+        h4pipo = parseInt(Math.min(currentD / h4h, h4num));
+        returnTxt = returnTxt + "Unit4 : " + h4pipo + "<br>";
+        currentD = currentD - h4pipo * h4h;
+        console.log(currentD);
+        if (currentD < h4h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
+        h5pipo = parseInt(Math.min(currentD / h5h, h5num));
+        returnTxt = returnTxt + "Unit5 : " + h5pipo + "<br>";
+        currentD = currentD - h5pipo * h5h;
+        console.log(currentD);
+        if (currentD < h5h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
+        h6pipo = parseInt(Math.min(currentD / h6h, h6num));
+        returnTxt = returnTxt + "Unit6 : " + h6pipo + "<br>";
+        currentD = currentD - h6pipo * h6h;
+        console.log(currentD);
+        if (currentD < h6h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
 
-function pipo(){
-	var totalDm = Number(document.getElementById("totalDm").innerHTML);
-	var hHosei = Number(document.getElementById("hHosei").innerHTML);
-	var h1h   = Number(document.getElementById("h1h").value) * hHosei;
-	var h1num = Number(document.getElementById("h1num").value);
-	var h2h   = Number(document.getElementById("h2h").value) * hHosei;
-	var h2num = Number(document.getElementById("h2num").value);
-	var h3h   = Number(document.getElementById("h3h").value) * hHosei;
-	var h3num = Number(document.getElementById("h3num").value);
-	var h4h   = Number(document.getElementById("h4h").value) * hHosei;
-	var h4num = Number(document.getElementById("h4num").value);
-	var h5h   = Number(document.getElementById("h5h").value) * hHosei;
-	var h5num = Number(document.getElementById("h5num").value);
-	var h6h   = Number(document.getElementById("h6h").value) * hHosei;
-	var h6num = Number(document.getElementById("h6num").value);
+        h7pipo = parseInt(Math.min(currentD / h7h, h7num));
+        returnTxt = returnTxt + "Unit7 : " + h7pipo + "<br>";
+        currentD = currentD - h7pipo * h7h;
+        console.log(currentD);
+        if (currentD < h7h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
 
-	var h7h   = Number(document.getElementById("h7h").value) * hHosei;
-	var h7num = Number(document.getElementById("h7num").value);
-	var h8h   = Number(document.getElementById("h8h").value) * hHosei;
-	var h8num = Number(document.getElementById("h8num").value);
-	var h9h   = Number(document.getElementById("h9h").value) * hHosei;
-	var h9num = Number(document.getElementById("h9num").value);
+        h8pipo = parseInt(Math.min(currentD / h8h, h8num));
+        returnTxt = returnTxt + "Unit8 : " + h8pipo + "<br>";
+        currentD = currentD - h8pipo * h8h;
+        console.log(currentD);
+        if (currentD < h8h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
 
-	
-	var returnTxt = "";
-	//TODO: seikikasiro
-		console.log(totalDm)
-	h1pipo = parseInt(Math.min(totalDm / h1h, h1num));
-	returnTxt = "Unit1 : " +h1pipo+"<br>"
-	currentD = totalDm - h1pipo * h1h;
-	console.log(currentD);
-	if (currentD < h1h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
+        h9pipo = parseInt(Math.min(currentD / h9h, h9num));
+        returnTxt = returnTxt + "Unit9 : " + h9pipo + "<br>";
+        currentD = currentD - h9pipo * h9h;
+        console.log(currentD);
+        if (currentD < h9h) {
+          document.getElementById("result").innerHTML = returnTxt;
+          return false;
+        }
 
-	h2pipo = parseInt(Math.min(currentD / h2h, h2num));
-	returnTxt = returnTxt + "Unit2 : " +h2pipo+"<br>"
-	currentD = currentD - h2pipo * h2h;
-	console.log(currentD);
-	if (currentD < h2h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-	h3pipo = parseInt(Math.min(currentD / h3h, h3num));
-	returnTxt = returnTxt + "Unit3 : " +h3pipo+"<br>"
-	currentD = currentD - h3pipo * h3h;
-	console.log(currentD);
-	if (currentD < h3h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-	h4pipo = parseInt(Math.min(currentD / h4h, h4num));
-	returnTxt = returnTxt + "Unit4 : " +h4pipo+"<br>"
-	currentD = currentD - h4pipo * h4h;
-	console.log(currentD);
-	if (currentD < h4h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-	h5pipo = parseInt(Math.min(currentD / h5h, h5num));
-	returnTxt = returnTxt + "Unit5 : " +h5pipo+"<br>"
-	currentD = currentD - h5pipo * h5h;
-	console.log(currentD);
-	if (currentD < h5h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-	h6pipo = parseInt(Math.min(currentD / h6h, h6num));
-	returnTxt = returnTxt + "Unit6 : " +h6pipo+"<br>"
-	currentD = currentD - h6pipo * h6h;
-	console.log(currentD);
-	if (currentD < h6h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-	
-	h7pipo = parseInt(Math.min(currentD / h7h, h7num));
-	returnTxt = returnTxt + "Unit7 : " +h7pipo+"<br>"
-	currentD = currentD - h7pipo * h7h;
-	console.log(currentD);
-	if (currentD < h7h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
-	
-	h8pipo = parseInt(Math.min(currentD / h8h, h8num));
-	returnTxt = returnTxt + "Unit8 : " +h8pipo+"<br>"
-	currentD = currentD - h8pipo * h8h;
-	console.log(currentD);
-	if (currentD < h8h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
+        returnTxt = returnTxt + "H10 : xxx";
+        document.getElementById("result").innerHTML = returnTxt;
+      }
+      function ctest() {
+        document.getElementById("hk").value = 497;
+        document.getElementById("realh").innerHTML = inputHk.value + "000";
+        document.getElementById("dk").value = 42;
+        document.getElementById("reald").innerHTML = inputDk.value + "000";
+        document.getElementById("jPercentage").value = 42.4;
+        document.getElementById("he").value = 1160;
+        document.getElementById("h1h").value = 1613;
+        document.getElementById("h2h").value = 1167;
+        document.getElementById("h3h").value = 1110;
+        document.getElementById("h4h").value = 1236;
+        document.getElementById("h5h").value = 10;
+        document.getElementById("h6h").value = 100;
+        document.getElementById("h7h").value = 1000;
+        document.getElementById("h8h").value = 50;
+        document.getElementById("h9h").value = 500;
 
-	h9pipo = parseInt(Math.min(currentD / h9h, h9num));
-	returnTxt = returnTxt + "Unit9 : " +h9pipo+"<br>"
-	currentD = currentD - h9pipo * h9h;
-	console.log(currentD);
-	if (currentD < h9h){
-		document.getElementById("result").innerHTML=returnTxt;
-		return false;
-	}
+        var select = document.getElementById("h1num");
+        select.options[43].selected = true;
+        var select = document.getElementById("h2num");
+        select.options[110].selected = true;
+        var select = document.getElementById("h3num");
+        select.options[33].selected = true;
+        var select = document.getElementById("h4num");
+        select.options[133].selected = true;
 
-	returnTxt = returnTxt + "H10 : xxx";
-	document.getElementById("result").innerHTML=returnTxt;
-	
+        var select = document.getElementById("h5num");
+        select.options[11].selected = true;
+        var select = document.getElementById("h6num");
+        select.options[12].selected = true;
+        var select = document.getElementById("h7num");
+        select.options[13].selected = true;
+        var select = document.getElementById("h8num");
+        select.options[4].selected = true;
+        var select = document.getElementById("h9num");
+        select.options[15].selected = true;
 
-}
-function ctest(){
-	document.getElementById("hk").value=497;
-	document.getElementById("realh").innerHTML=inputHk.value + "000"
-	document.getElementById("dk").value=42;
-	document.getElementById("reald").innerHTML=inputDk.value + "000"
-	document.getElementById("jPercentage").value=42.4;
-	document.getElementById("he").value=1160;
-	document.getElementById("h1h").value=1613;
-	document.getElementById("h2h").value=1167;
-	document.getElementById("h3h").value=1110;
-	document.getElementById("h4h").value=1236;
-	document.getElementById("h5h").value=10;
-	document.getElementById("h6h").value=100;
-	document.getElementById("h7h").value=1000;
-	document.getElementById("h8h").value=50;
-	document.getElementById("h9h").value=500;
-
-	var select = document.getElementById("h1num");
-	select.options[43].selected = true
-	var select = document.getElementById("h2num");
-	select.options[110].selected = true
-	var select = document.getElementById("h3num");
-	select.options[33].selected = true
-	var select = document.getElementById("h4num");
-	select.options[133].selected = true
-
-	var select = document.getElementById("h5num");
-	select.options[11].selected = true
-	var select = document.getElementById("h6num");
-	select.options[12].selected = true
-	var select = document.getElementById("h7num");
-	select.options[13].selected = true
-	var select = document.getElementById("h8num");
-	select.options[4].selected = true
-	var select = document.getElementById("h9num");
-	select.options[15].selected = true
-
-	
-	
         document.getElementById("inputTestVal").remove();
-	//calcRawH()
-	//calcDm()
-}
+        //calcRawH()
+        //calcDm()
+      }
 
-function calcDm(){
-	var ba = Number(document.getElementById("ki").value);
-	var ba5p  = ba / 20;
-	var reald = Number(document.getElementById("reald").innerHTML);
-	var realh = Number(document.getElementById("realh").innerHTML);
-	var dPerTurn = Math.max(ba5p, ba-reald)
-	var dp = Number(document.getElementById("decPercentage").value);
-	var dn = Number(document.getElementById("dec").value);
-	var he = Number(document.getElementById("he").value);
-	var jp = Number(document.getElementById("jPercentage").value);
-	var d20t = dPerTurn * 1.025*((100-dp)/100) * 20;
-	var p20t = (he*19)+(dn*20);
-	//console.log(d20t);
-	//console.log(p20t);
-	totalDm = Math.min( (d20t - p20t)*(jp/100), realh*(jp/100) );
-	document.getElementById("totalDm").innerHTML=totalDm
-}
+      function calcDm() {
+        var ba = Number(document.getElementById("ki").value);
+        var ba5p = ba / 20;
+        var reald = Number(document.getElementById("reald").innerHTML);
+        var realh = Number(document.getElementById("realh").innerHTML);
+        var dPerTurn = Math.max(ba5p, ba - reald);
+        var dp = Number(document.getElementById("decPercentage").value);
+        var dn = Number(document.getElementById("dec").value);
+        var he = Number(document.getElementById("he").value);
+        var jp = Number(document.getElementById("jPercentage").value);
+        var d20t = dPerTurn * 1.025 * ((100 - dp) / 100) * 20;
+        var p20t = he * 19 + dn * 20;
+        //console.log(d20t);
+        //console.log(p20t);
+        totalDm = Math.min((d20t - p20t) * (jp / 100), realh * (jp / 100));
+        document.getElementById("totalDm").innerHTML = totalDm;
+      }
 
-function calcRawH(){
-	var h1h   = document.getElementById("h1h").value;
-	var h1num = document.getElementById("h1num").value;
-	var h2h   = document.getElementById("h2h").value;
-	var h2num = document.getElementById("h2num").value;
-	var h3h   = document.getElementById("h3h").value;
-	var h3num = document.getElementById("h3num").value;
-	var h4h   = document.getElementById("h4h").value;
-	var h4num = document.getElementById("h4num").value;
-	var h5h   = document.getElementById("h5h").value;
-	var h5num = document.getElementById("h5num").value;
-	var h6h   = document.getElementById("h6h").value;
-	var h6num = document.getElementById("h6num").value;
-	
-	var h7h   = document.getElementById("h7h").value;
-	var h7num = document.getElementById("h7num").value;
-	var h8h   = document.getElementById("h8h").value;
-	var h8num = document.getElementById("h8num").value;
-	var h9h   = document.getElementById("h9h").value;
-	var h9num = document.getElementById("h9num").value;
-	
-	var totalRawH = h1h*h1num + h2h*h2num + h3h*h3num + h4h*h4num + h5h*h5num + h6h*h6num + h7h*h7num + h8h*h8num + h9h*h9num;
-	document.getElementById("totalRawH").innerHTML=totalRawH
-	var realh = document.getElementById("realh").innerHTML
+      function calcRawH() {
+        var h1h = document.getElementById("h1h").value;
+        var h1num = document.getElementById("h1num").value;
+        var h2h = document.getElementById("h2h").value;
+        var h2num = document.getElementById("h2num").value;
+        var h3h = document.getElementById("h3h").value;
+        var h3num = document.getElementById("h3num").value;
+        var h4h = document.getElementById("h4h").value;
+        var h4num = document.getElementById("h4num").value;
+        var h5h = document.getElementById("h5h").value;
+        var h5num = document.getElementById("h5num").value;
+        var h6h = document.getElementById("h6h").value;
+        var h6num = document.getElementById("h6num").value;
 
-	var hHosei = realh / totalRawH;
-	//console.log(hHosei)
-	document.getElementById("hHosei").innerHTML=hHosei
-}
-</script>
+        var h7h = document.getElementById("h7h").value;
+        var h7num = document.getElementById("h7num").value;
+        var h8h = document.getElementById("h8h").value;
+        var h8num = document.getElementById("h8num").value;
+        var h9h = document.getElementById("h9h").value;
+        var h9num = document.getElementById("h9num").value;
 
-<br>
-<hr>
-<span class="bysys xx-small">Author : bandana@ctake4<br></span>
-</body></html>
+        var totalRawH =
+          h1h * h1num +
+          h2h * h2num +
+          h3h * h3num +
+          h4h * h4num +
+          h5h * h5num +
+          h6h * h6num +
+          h7h * h7num +
+          h8h * h8num +
+          h9h * h9num;
+        document.getElementById("totalRawH").innerHTML = totalRawH;
+        var realh = document.getElementById("realh").innerHTML;
+
+        var hHosei = realh / totalRawH;
+        //console.log(hHosei)
+        document.getElementById("hHosei").innerHTML = hHosei;
+      }
+    </script>
+
+    <br />
+    <hr />
+    <span class="bysys xx-small">Author : bandana@ctake4<br /></span>
+  </body>
+</html>
