@@ -1,13 +1,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script>
-      function createSerialNumberOptions(start = 0, end = 399) {
-        for (let i = start; i <= end; i++) {
-          document.write(`<option value="${i}">${i}</option>`);
-        }
-      }
-    </script>
   </head>
 
   <body>
@@ -17,7 +10,7 @@
       }
       span.row1 {
         display: inline-block;
-        width: 85px;
+        width: 150px;
       }
       span.xx-small {
         font-size: xx-small;
@@ -58,28 +51,28 @@
       name="dk"
       oninput="value = value.replace(/[^0-9\.]+/i,'');"
     /><span id="reald" class="bysys"></span><br />
-    <span class="row1">重傷％</span
+    <span class="row1">重傷率</span
     ><input
       type="text"
       id="jPercentage"
       name="jPercentage"
       oninput="value = value.replace(/[^0-9\.]+/i,'');"
     /><br />
-    <span class="row1 xx-small">毎ターン回復</span
+    <span class="row1">毎ターン回復</span
     ><input
       type="text"
       id="he"
       name="he"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     /><br />
-    <span class="row1 xx-small">ダメージ耐性(%)</span
+    <span class="row1">ダメージ耐性(%)</span
     ><input
       type="text"
       id="decPercentage"
       name="decPercentage"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     /><br />
-    <span class="row1 xx-small">ダメージ耐性</span
+    <span class="row1">ダメージ耐性</span
     ><input
       type="text"
       id="dec"
@@ -97,10 +90,7 @@
       maxlength="5"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h1num" name="h1num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h1num" name="h1num">
     </select>
     <br />
     Unit2
@@ -112,10 +102,7 @@
       maxlength="5"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h2num" name="h2num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h2num" name="h2num">
     </select>
     <br />
     Unit3
@@ -127,10 +114,7 @@
       maxlength="5"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h3num" name="h3num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h3num" name="h3num">
     </select>
     <br />
     Unit4
@@ -142,10 +126,7 @@
       size="8"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h4num" name="h4num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h4num" name="h4num">
     </select>
     <br />
     Unit5
@@ -157,10 +138,7 @@
       name="h5h"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h5num" name="h5num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h5num" name="h5num">
     </select>
     <br />
     Unit6
@@ -172,10 +150,7 @@
       size="8"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h6num" name="h6num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h6num" name="h6num">
     </select>
     <br />
 
@@ -188,10 +163,7 @@
       size="8"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h7num" name="h7num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h7num" name="h7num">
     </select>
     <br />
     Unit8
@@ -203,10 +175,7 @@
       size="8"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h8num" name="h8num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h8num" name="h8num">
     </select>
     <br />
     Unit9
@@ -218,18 +187,15 @@
       size="8"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
-    <select id="h9num" name="h9num">
-      <script>
-        this.createSerialNumberOptions();
-      </script>
+    <select class="unitNum" id="h9num" name="h9num">
     </select>
     <br />
 
-    <span class="bysys">totalRawH :&nbsp;</span
+    <span class="bysys">補正前トータルHP :&nbsp;</span
     ><span class="bysys" id="totalRawH"></span><br />
-    <span class="bysys">hHosei :&nbsp;</span
+    <span class="bysys">HP補正係数 :&nbsp;</span
     ><span class="bysys" id="hHosei"></span><br />
-    <span class="bysys">totalDm :&nbsp;</span
+    <span class="bysys">トータルダメージ :&nbsp;</span
     ><span class="bysys" id="totalDm"></span><br />
 
     <input type="submit" value="Simuration" onclick="simuration()" />
@@ -244,11 +210,6 @@
     <span id="result"></span>
 
     <script>
-      function simuration() {
-        calcRawH();
-        calcDm();
-        pipo();
-      }
       var inputHk = document.getElementById("hk");
       inputHk.addEventListener(
         "change",
@@ -258,7 +219,6 @@
         },
         false
       );
-
       var inputDk = document.getElementById("dk");
       inputDk.addEventListener(
         "change",
@@ -268,6 +228,23 @@
         },
         false
       );
+      createUnitNumberOptions();
+
+      function createUnitNumberOptions(){
+        var optionHtml;
+        for (let i = 0; i <= 400; i++) {
+          optionHtml +='<option value="' + i + '">' + i + '</option>';
+        }
+        var unitSelectors = document.getElementsByClassName("unitNum");
+        for(let i in unitSelectors){
+          unitSelectors[i].innerHTML = optionHtml;
+        }
+      }
+      function simuration() {
+        calcRawH();
+        calcDm();
+        pipo();
+      }
 
       function pipo() {
         var totalDm = Number(document.getElementById("totalDm").innerHTML);
