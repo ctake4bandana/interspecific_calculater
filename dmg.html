@@ -1,181 +1,244 @@
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <style>
-        table {
-            background-color: #eee;
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <style>
+    table {
+      background-color: #eee;
+    }
+
+    tr {
+      background-color: #fff;
+    }
+
+    td {
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+
+    body {
+      margin: 15px;
+    }
+
+    span.row1 {
+      display: inline-block;
+      width: 85px;
+    }
+
+    .xx-small {
+      font-size: xx-small;
+    }
+
+    span.bysys {
+      color: #bbb;
+      font-size: small;
+    }
+
+    td.f7 {
+      background-color: #f7f7f7;
+    }
+  </style>
+  <body>
+    <br />
+    <span class="row1">攻(K)</span>
+    <input
+      type="text"
+      id="ak"
+      name="ak"
+      oninput="value = value.replace(/[^0-9\.]+/i,'');"
+    />
+    <span id="realh" class="bysys"></span>
+    <br />
+    <span class="row1">追(K)</span>
+    <input
+      type="text"
+      id="ck"
+      name="ck"
+      oninput="value = value.replace(/[^0-9\.]+/i,'');"
+    />
+    <span id="reald" class="bysys"></span>
+    <br />
+    <span class="row1">元素計</span>
+    <input
+      type="text"
+      id="elesum"
+      name="elesum"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <br />
+    <span class="row1">防無視</span>
+    <input
+      type="text"
+      id="igd"
+      name="igd"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <br />
+    <span class="row1">ダメ(%)</span>
+    <input
+      type="text"
+      id="bufper"
+      name="bufper"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <br />
+
+    <input type="submit" value="Simuration" onclick="calc()" />
+    <input type="submit" value="inputLastVal" onclick="ctest()" />
+    <hr />
+    Result<br />
+    <span id="result"></span>
+    <table>
+      <tr>
+        <td class="f7">Area</td>
+        <td class="f7">追撃無</td>
+        <td class="f7">追撃有</td>
+      </tr>
+      <tr>
+        <td id="a11" class="f7">11</td>
+        <td id="a11a20"></td>
+        <td id="a11sum"></td>
+      </tr>
+      <tr>
+        <td id="a12" class="f7">12</td>
+        <td id="a12a20"></td>
+        <td id="a12sum"></td>
+      </tr>
+      <tr>
+        <td id="a13" class="f7">13</td>
+        <td id="a13a20"></td>
+        <td id="a13sum"></td>
+      </tr>
+      <tr>
+        <td id="a14" class="f7">14</td>
+        <td id="a14a20"></td>
+        <td id="a14sum"></td>
+      </tr>
+      <tr>
+        <td id="a15" class="f7">15</td>
+        <td id="a15a20"></td>
+        <td id="a15sum"></td>
+      </tr>
+      <tr>
+        <td id="a16" class="f7">16</td>
+        <td id="a16a20"></td>
+        <td id="a16sum"></td>
+      </tr>
+      <tr>
+        <td id="a17" class="f7">17</td>
+        <td id="a17a20"></td>
+        <td id="a17sum"></td>
+      </tr>
+      <tr>
+        <td id="a18" class="f7">18</td>
+        <td id="a18a20"></td>
+        <td id="a18sum"></td>
+      </tr>
+      <tr>
+        <td id="a19" class="f7">19</td>
+        <td id="a19a20"></td>
+        <td id="a19sum"></td>
+      </tr>
+      <tr>
+        <td id="a20" class="f7">20</td>
+        <td id="a20a20"></td>
+        <td id="a20sum"></td>
+      </tr>
+      <tr>
+        <td id="a21" class="f7">21</td>
+        <td id="a21a20"></td>
+        <td id="a21sum"></td>
+      </tr>
+      <tr>
+        <td id="a22" class="f7">22</td>
+        <td id="a22a20"></td>
+        <td id="a22sum"></td>
+      </tr>
+      <tr>
+        <td id="a23" class="f7">23</td>
+        <td id="a23a20"></td>
+        <td id="a23sum"></td>
+      </tr>
+      <tr>
+        <td id="a24" class="f7">24</td>
+        <td id="a24a20"></td>
+        <td id="a24sum"></td>
+      </tr>
+    </table>
+    <script>
+      function ctest() {
+        document.getElementById("ak").value = getCookie("ak");
+        document.getElementById("ck").value = getCookie("ck");
+        document.getElementById("elesum").value = getCookie("elesum");
+        document.getElementById("bufper").value = getCookie("bufper");
+        document.getElementById("igd").value = getCookie("igd");
+      }
+      function calc() {
+        var atk = Number(document.getElementById("ak").value) * 1000;
+        var ck = Number(document.getElementById("ck").value) * 1000;
+        var elesum = Number(document.getElementById("elesum").value);
+        var igd = Number(document.getElementById("igd").value);
+        igd = (100 - igd) / 100;
+        var bufper = Number(document.getElementById("bufper").value);
+        bufper = 1 + bufper / 100;
+
+        var kinga = {
+          11: 18319,
+          12: 25159,
+          13: 50280,
+          14: 95958,
+          15: 136998,
+          16: 201532,
+          17: 376818,
+          18: 764156,
+          19: 1052454,
+          20: 1375482,
+          21: 1727000,
+          22: 2115000,
+          23: 2540000,
+          24: 3003000,
+        };
+
+        for (var key in kinga) {
+          var bd = kinga[key];
+          var ra = Math.max(atk / 20, atk - bd * igd) * bufper;
+          var rc = Math.max(ck / 20, ck - bd * igd) * bufper;
+          var rga = getBaseLog(5, atk * bufper) * elesum * bufper;
+          var rgc = getBaseLog(5, ck * bufper) * elesum * bufper;
+
+          document.getElementById("a" + key + "a20").innerHTML =
+            parseInt(((ra + rga) * 20) / 1000) + "(k)";
+          document.getElementById("a" + key + "sum").innerHTML =
+            parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000) + "(k)";
         }
+        setCookie();
+      }
 
-        tr {
-            background-color: #fff;
-        }
+      function getCookie(name) {
+        let matches = document.cookie.match(
+          new RegExp(
+            "(?:^|; )" +
+              name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+              "=([^;]*)"
+          )
+        );
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+      }
 
-        td {
-            padding-left: 6px;
-            padding-right: 6px;
-        }
+      function setCookie() {
+        document.cookie = "ak=" + document.getElementById("ak").value;
+        document.cookie = "ck=" + document.getElementById("ck").value;
+        document.cookie = "elesum=" + document.getElementById("elesum").value;
+        document.cookie = "bufper=" + document.getElementById("bufper").value;
+        document.cookie = "igd=" + document.getElementById("igd").value;
+      }
 
-        body {
-            margin: 15px;
-        }
-
-        span.row1 {
-            display: inline-block;
-            width: 85px;
-        }
-
-        .xx-small {
-            font-size: xx-small;
-        }
-
-        span.bysys {
-            color: #bbb;
-            font-size: small;
-        }
-
-        td.f7 {
-            background-color: #f7f7f7
-        }
-    </style>
-    <body>
-        <br>
-        <span class="row1">攻(K)</span>
-        <input type="text" id="ak" name="ak" oninput="value = value.replace(/[^0-9\.]+/i,'');"/>
-        <span id="realh" class="bysys"></span>
-        <br>
-        <span class="row1">追(K)</span>
-        <input type="text" id="ck" name="ck" oninput="value = value.replace(/[^0-9\.]+/i,'');"/>
-        <span id="reald" class="bysys"></span>
-        <br>
-        <span class="row1">元素計</span>
-        <input type="text" id="elesum" name="elesum" oninput="value = value.replace(/[^0-9]+/i,'');"/>
-        <br>
-        <span class="row1">防無視</span>
-        <input type="text" id="igd" name="igd" oninput="value = value.replace(/[^0-9]+/i,'');"/>
-        <br>
-        <span class="row1">ダメ(%)</span>
-        <input type="text" id="bufper" name="bufper" oninput="value = value.replace(/[^0-9]+/i,'');"/>
-        <br>
-
-        <input type="submit" value="Simuration" onclick="calc()">
-        <input type="submit" value="inputLastVal" onclick="ctest()">
-        <hr>
-        Result<br>
-        <span id="result"></span>
-        <table>
-            <tr>
-                <td class="f7">Area</td>
-                <td class="f7">追撃無</td>
-                <td class="f7">追撃有</td>
-            </tr>
-            <tr>
-                <td id="a11" class="f7">11</td>
-                <td id="a11a20"></td>
-                <td id="a11sum"></td>
-            </tr>
-            <tr>
-                <td id="a12" class="f7">12</td>
-                <td id="a12a20"></td>
-                <td id="a12sum"></td>
-            </tr>
-            <tr>
-                <td id="a13" class="f7">13</td>
-                <td id="a13a20"></td>
-                <td id="a13sum"></td>
-            </tr>
-            <tr>
-                <td id="a14" class="f7">14</td>
-                <td id="a14a20"></td>
-                <td id="a14sum"></td>
-            </tr>
-            <tr>
-                <td id="a15" class="f7">15</td>
-                <td id="a15a20"></td>
-                <td id="a15sum"></td>
-            </tr>
-            <tr>
-                <td id="a16" class="f7">16</td>
-                <td id="a16a20"></td>
-                <td id="a16sum"></td>
-            </tr>
-            <tr>
-                <td id="a17" class="f7">17</td>
-                <td id="a17a20"></td>
-                <td id="a17sum"></td>
-            </tr>
-            <tr>
-                <td id="a18" class="f7">18</td>
-                <td id="a18a20"></td>
-                <td id="a18sum"></td>
-            </tr>
-            
-        </table>
-        <script>
-
-            function ctest() {
-                document.getElementById("ak").value = getCookie("ak");
-                document.getElementById("ck").value = getCookie("ck");
-                document.getElementById("elesum").value = getCookie("elesum");
-                document.getElementById("bufper").value = getCookie("bufper");
-                document.getElementById("igd").value = getCookie("igd");
-            }
-            function calc() {
-                var atk = Number(document.getElementById("ak").value) * 1000;
-                var ck = Number(document.getElementById("ck").value) * 1000;
-                var elesum = Number(document.getElementById("elesum").value);
-                var igd = Number(document.getElementById("igd").value);
-                igd = (100 - igd) / 100;
-                var bufper = Number(document.getElementById("bufper").value);
-                bufper = 1 + (bufper / 100)
-
-                var kinga = {
-                    '11': 18319,
-                    '12': 25159,
-                    '13': 50280,
-                    '14': 95958,
-                    '15': 136998,
-                    '16': 201532,
-                    '17': 376818,
-                    '18': 764000
-                };
-
-                for (var key in kinga) {
-                    var bd = kinga[key];
-                    var ra = Math.max(atk / 20, (atk - (bd * igd))) * bufper;
-                    var rc = Math.max(ck / 20, (ck - (bd * igd))) * bufper;
-                    var rga = getBaseLog(5, atk * bufper) * elesum * bufper;
-                    var rgc = getBaseLog(5, ck * bufper) * elesum * bufper;
-
-                    document.getElementById("a" + key + "a20").innerHTML = parseInt(((ra + rga) * 20) / 1000) + '(k)';
-                    document.getElementById("a" + key + "sum").innerHTML = parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000) + '(k)';
-                }
-                setCookie();
-            }
-            
-            function getCookie(name) {
-                let matches = document.cookie.match(new RegExp(
-                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                ));
-                return matches ? decodeURIComponent(matches[1]) : undefined;
-            }
-
-            function setCookie(){
-                document.cookie = 'ak=' + document.getElementById("ak").value ;
-                document.cookie = 'ck=' + document.getElementById("ck").value ;
-                document.cookie = 'elesum=' + document.getElementById("elesum").value ;
-                document.cookie = 'bufper=' + document.getElementById("bufper").value ;
-                document.cookie = 'igd=' + document.getElementById("igd").value ;
-            }
-            
-            function getBaseLog(x, y) {
-                return Math.log(y) / Math.log(x);
-            }
-        </script>
-        <br>
-        <hr>
-        <span class="bysys xx-small">
-            Author : bandana@ctake4<br>
-        </span>
-    </body>
+      function getBaseLog(x, y) {
+        return Math.log(y) / Math.log(x);
+      }
+    </script>
+    <br />
+    <hr />
+    <span class="bysys xx-small"> Author : bandana@ctake4<br /> </span>
+  </body>
 </html>
