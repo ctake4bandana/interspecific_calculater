@@ -22,7 +22,7 @@
 
     span.row1 {
       display: inline-block;
-      width: 85px;
+      width: 128px;
     }
 
     .xx-small {
@@ -79,6 +79,22 @@
       type="text"
       id="bufper"
       name="bufper"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <br />
+    <span class="row1">源獣尖兵(%)</span>
+    <input
+      type="text"
+      id="genju_per"
+      name="genju_per"
+      oninput="value = value.replace(/[^0-9]+/i,'');"
+    />
+    <br />
+    <span class="row1">源獣尖兵+値(k)</span>
+    <input
+      type="text"
+      id="genju_atk_k"
+      name="genju_atk_k"
       oninput="value = value.replace(/[^0-9]+/i,'');"
     />
     <br />
@@ -170,8 +186,10 @@
         document.getElementById("ak").value = getCookie("ak");
         document.getElementById("ck").value = getCookie("ck");
         document.getElementById("elesum").value = getCookie("elesum");
-        document.getElementById("bufper").value = getCookie("bufper");
         document.getElementById("igd").value = getCookie("igd");
+        document.getElementById("bufper").value = getCookie("bufper");
+        document.getElementById("genju_per").value = getCookie("genju_per");
+        document.getElementById("genju_atk_k").value = getCookie("genju_atk_k");
       }
       function calc() {
         var atk = Number(document.getElementById("ak").value) * 1000;
@@ -181,6 +199,9 @@
         igd = (100 - igd) / 100;
         var bufper = Number(document.getElementById("bufper").value);
         bufper = 1 + bufper / 100;
+        var genjuPer = Number(document.getElementById("genju_per").value);
+        genjuPer = genjuPer / 100;
+        var genjuAtk = Number(document.getElementById("genju_atk_k").value) * 1000;
 
         var kinga = {
           11: 18319,
@@ -205,11 +226,13 @@
           var rc = Math.max(ck / 20, ck - bd * igd) * bufper;
           var rga = getBaseLog(5, atk * bufper) * elesum * bufper;
           var rgc = getBaseLog(5, ck * bufper) * elesum * bufper;
+          const nonAdditional = parseInt(((ra + rga) * 20) / 1000);
+          const additional = parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000);
+          // 源獣の追撃は3ターン経過毎に1回なので最大6回
+          const genjuAdditonal = parseInt(((atk * genjuPer + genjuAtk) * 6) / 1000);
 
-          document.getElementById("a" + key + "a20").innerHTML =
-            parseInt(((ra + rga) * 20) / 1000) + "(k)";
-          document.getElementById("a" + key + "sum").innerHTML =
-            parseInt(((ra + rga) * 20 + (rc + rgc) * 20) / 1000) + "(k)";
+          document.getElementById("a" + key + "a20").innerHTML = `${nonAdditional}(k)`;
+          document.getElementById("a" + key + "sum").innerHTML = `${additional + genjuAdditonal}(k)`;
         }
         setCookie();
       }
@@ -229,8 +252,10 @@
         document.cookie = "ak=" + document.getElementById("ak").value;
         document.cookie = "ck=" + document.getElementById("ck").value;
         document.cookie = "elesum=" + document.getElementById("elesum").value;
-        document.cookie = "bufper=" + document.getElementById("bufper").value;
         document.cookie = "igd=" + document.getElementById("igd").value;
+        document.cookie = "bufper=" + document.getElementById("bufper").value;
+        document.cookie = "genju_per=" + document.getElementById("genju_per").value;
+        document.cookie = "genju_atk_k=" + document.getElementById("genju_atk_k").value;
       }
 
       function getBaseLog(x, y) {
